@@ -66,9 +66,24 @@ public class ZombieBehavior: MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.started && IS_GROUNDED && IS_ALIVE)
+        if (context.started)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, _jumpHeight);
+            PerformJump();
+        }
+    }
+
+    public void MobileJump()
+    {
+        PerformJump();
+    }
+    private void PerformJump()
+    {
+        if (IS_GROUNDED && IS_ALIVE && rb != null)
+        {
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                _jumpHeight
+            );
         }
     }
 

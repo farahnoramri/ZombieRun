@@ -7,9 +7,9 @@ public class ObstaclesSpawner : MonoBehaviour
 
     [Header("Spawning Details")]
     [SerializeField]
-    private float _maxSpawnInterval = 2f;
+    private float _maxSpawnInterval = 2.5f;
     [SerializeField]
-    private float _minSpawnInterval = 4f;
+    private float _minSpawnInterval = 2f;
     private float spawnTimer;
     private float nextSpawnTime;
     private void Update()
@@ -19,7 +19,7 @@ public class ObstaclesSpawner : MonoBehaviour
         if(spawnTimer >= nextSpawnTime)
         {
             SpawnBarrier();
-            spawnTimer = 0f;
+            spawnTimer = 0.0f;
             nextSpawnTime = Random.Range(_minSpawnInterval, _maxSpawnInterval);
         }
     }
