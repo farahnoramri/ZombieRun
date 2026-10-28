@@ -17,16 +17,23 @@ public class ZombieBehavior: MonoBehaviour
 
     [SerializeField]
     private LayerMask _groundLayer;
+
+    [SerializeField]
+    private int _maxJumps = 2; // Set to 2 for double jump (or 1 for single jump)
+    private int _jumpsRemaining;
+
     private Animator _animator;
     private GameScript _gameScript;
+
     private void Start()
     {
-
         Time.timeScale = 1.0f;
         IS_ALIVE = true;
         rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _gameScript = FindAnyObjectByType<GameScript>();
+
+        _jumpsRemaining = _maxJumps;
 
         if (rb == null)
         {
@@ -44,8 +51,13 @@ public class ZombieBehavior: MonoBehaviour
         RaycastHit2D playerRaycast = Physics2D.Raycast(transform.position, Vector2.down, _rayLength, _groundLayer);
         IS_GROUNDED = playerRaycast.collider != null;
 
-        Debug.Log("Is Grounded: " + IS_GROUNDED);
+        // Reset available jumps whenever the zombie is back on the ground
+        if (IS_GROUNDED)
+        {
+            _jumpsRemaining = _maxJumps;
+        }
 
+        Debug.Log("Is Grounded: " + IS_GROUNDED);
         Debug.DrawRay(transform.position, Vector2.down * _rayLength, Color.yellow);
 
         if(_animator != null)
@@ -76,16 +88,17 @@ public class ZombieBehavior: MonoBehaviour
     {
         PerformJump();
     }
+
     private void PerformJump()
     {
-        if (IS_GROUNDED && IS_ALIVE && rb != null)
+        // Allow jumping if we still have jumps remaining (e.g. 2 for ground jump + mid-air jump) and are alive
+        if (_jumpsRemaining > 0 && IS_ALIVE && rb != null)
         {
             rb.linearVelocity = new Vector2(
                 rb.linearVelocity.x,
                 _jumpHeight
             );
+            _jumpsRemaining--; // Consume one jump count
         }
     }
-
-
 }

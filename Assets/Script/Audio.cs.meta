@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 72e3e67271b1e75459d67352a37b147c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - musicSource: {instanceID: 0}
+  - sfxSource: {instanceID: 0}
+  - runningSource: {instanceID: 0}
+  - mainMenuSound: {fileID: 8300000, guid: de9795be4d17bf049a3af3fd4d46778a, type: 3}
+  - buttonClickSound: {fileID: 8300000, guid: 9e42839e7c1c4d147be32fe35a101d82, type: 3}
+  - collectBrainSound: {fileID: 8300000, guid: ecf4d5bbb96354c4b94b2275f28ef991, type: 3}
+  - countdownSound: {fileID: 8300000, guid: 72ee8cc6ca77c83489da34362f1333ab, type: 3}
+  - gameOverSound: {fileID: 8300000, guid: 4618ad537c73af4438f7cab250eed34d, type: 3}
+  - jumpSound: {fileID: 8300000, guid: 005240e4a5e6e7440850f7b4f26d7ebd, type: 3}
+  - runningSound: {fileID: 8300000, guid: c0393056caeeed64ebda5f3ea56d9a98, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

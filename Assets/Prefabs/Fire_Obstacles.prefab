@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1316261629452452378}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.331, y: -2.697, z: 0}
+  m_LocalPosition: {x: -7.331, y: -3.8403, z: 0}
   m_LocalScale: {x: 0.09517917, y: 0.0676017, z: 1.0707}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d22ffbd9bcac4c4da937d8321e0a4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BarrierBehavior
-  _barrierMovementSpeed: 5
   _screenExit: -15
   barrierRigidBody: {fileID: 0}
 --- !u!212 &1712125429820064809
