@@ -27,12 +27,10 @@ public class ZombieBehavior: MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 1.0f;
         IS_ALIVE = true;
         rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _gameScript = FindAnyObjectByType<GameScript>();
-
         _jumpsRemaining = _maxJumps;
 
         if (rb == null)
@@ -99,6 +97,10 @@ public class ZombieBehavior: MonoBehaviour
                 _jumpHeight
             );
             _jumpsRemaining--; // Consume one jump count
+        }
+
+        if (Audio.Instance != null){
+        Audio.Instance.PlayJump();
         }
     }
 }

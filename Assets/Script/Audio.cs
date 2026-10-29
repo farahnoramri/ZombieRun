@@ -1,131 +1,74 @@
+
 using UnityEngine;
-
-public class Audio: MonoBehaviour
+public class Audio : MonoBehaviour
 {
-public static Audio Instance;
+    public static Audio Instance;
 
-[Header("Audio Sources")]
-[SerializeField] private AudioSource musicSource;
-[SerializeField] private AudioSource sfxSource;
-[SerializeField] private AudioSource runningSource;
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
 
-[Header("Audio Clips")]
-[SerializeField] private AudioClip mainMenuSound;
-[SerializeField] private AudioClip buttonClickSound;
-[SerializeField] private AudioClip collectBrainSound;
-[SerializeField] private AudioClip countdownSound;
-[SerializeField] private AudioClip gameOverSound;
-[SerializeField] private AudioClip jumpSound;
-[SerializeField] private AudioClip runningSound;
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip mainMenuSound;
+    [SerializeField] private AudioClip buttonClickSound;
+    [SerializeField] private AudioClip collectBrainSound;
+    [SerializeField] private AudioClip countdownSound;
+    [SerializeField] private AudioClip gameOverSound;
+    [SerializeField] private AudioClip jumpSound;
 
-private void Awake()
-{
-// Prevent duplicate AudioManagers
-if (Instance != null && Instance != this)
-{
-Destroy(gameObject);
-return;
-}
-
-Instance = this;
-DontDestroyOnLoad(gameObject);
-}
-
-// MAIN MENU
-public void PlayMainMenu()
-{
-runningSource.Stop();
-
-musicSource.clip = mainMenuSound;
-musicSource.loop = true;
-musicSource.Play();
-}
-
-// BUTTON CLICK
-public void PlayButtonClick()
-{
-sfxSource.PlayOneShot(buttonClickSound);
-}
-
-// COLLECT BRAIN
-public void PlayCollectBrain()
-{
-sfxSource.PlayOneShot(collectBrainSound);
-}
-
-// COUNTDOWN
-public void PlayCountdown()
-{
-musicSource.Stop();
-runningSource.Stop();
-
-sfxSource.PlayOneShot(countdownSound);
-}
-
-// GAME OVER
-public void PlayGameOver()
-{
-runningSource.Stop();
-sfxSource.PlayOneShot(gameOverSound);
-}
-
-// JUMP
-public void PlayJump()
-{
-sfxSource.PlayOneShot(jumpSound);
-}
-
-// RUNNING
-public void PlayRunning()
-{
-if (!runningSource.isPlaying)
-{
-runningSource.clip = runningSound;
-runningSource.loop = true;
-runningSource.Play();
-}
-}
-
-public void StopRunning()
-{
-runningSource.Stop();
-}
-
-private void Awake()
-{
-    // Prevent duplicate AudioManagers
-    if (Instance != null && Instance != this)
+    private void Awake()
     {
-        Destroy(gameObject);
-        return;
+        // Prevent duplicate Audio
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    Instance = this;
-    DontDestroyOnLoad(gameObject);
-
-    // Automatically create Audio Sources if they aren't assigned in the Inspector
-    SetupAudioSources();
-}
-
-private void SetupAudioSources()
-{
-    // Check and add Music Source
-    if (musicSource == null)
+    // MAIN MENU
+    public void PlayMainMenu()
     {
-        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.clip = mainMenuSound;
+        musicSource.loop = true;
+        musicSource.Play();
     }
 
-    // Check and add SFX Source
-    if (sfxSource == null)
+    // BUTTON CLICK
+    public void PlayButtonClick()
     {
-        sfxSource = gameObject.AddComponent<AudioSource>();
+        sfxSource.PlayOneShot(buttonClickSound);
     }
 
-    // Check and add Running Source
-    if (runningSource == null)
+    // COLLECT BRAIN
+    public void PlayCollectBrain()
     {
-        runningSource = gameObject.AddComponent<AudioSource>();
+        sfxSource.PlayOneShot(collectBrainSound);
     }
-}
 
+    // COUNTDOWN
+    public void PlayCountdown()
+    {
+        sfxSource.PlayOneShot(countdownSound, 1f);
+    }
+
+    // GAME OVER
+    public void PlayGameOver()
+    {
+        sfxSource.PlayOneShot(gameOverSound);
+    }
+
+    // JUMP
+    public void PlayJump()
+    {
+        sfxSource.PlayOneShot(jumpSound,0.3f);
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
 }

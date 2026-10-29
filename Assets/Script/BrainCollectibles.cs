@@ -17,6 +17,10 @@ public class BrainCollectible : MonoBehaviour
             if (gameScript != null)
             {
                 gameScript.CollectBrain();
+                if(Audio.Instance != null)
+                {
+                    Audio.Instance.PlayCollectBrain();
+                }
             }
 
             Destroy(gameObject);

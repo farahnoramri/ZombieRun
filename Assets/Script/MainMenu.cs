@@ -17,10 +17,16 @@ if (_totalBrainText != null)
 {
 _totalBrainText.text = "Total brain collected : " + totalBrain;
 }
+
+if (Audio.Instance != null)
+    Audio.Instance.PlayMainMenu();
+
 }
 
 public void PlayGame()
 {
-SceneManager.LoadScene("GameScene1");
+    if (Audio.Instance != null)
+    Audio.Instance.PlayButtonClick();
+    SceneManager.LoadScene("GameScene1");
 }
 }

@@ -123,9 +123,9 @@ _brainText.text = "Brain: " + brainCount;
 
 public void GameOver()
 {
-if (isGameOver)
+    if (isGameOver)
 {
-return;
+    return;
 }
 
 isGameOver = true;
@@ -135,18 +135,29 @@ updateScoreText();
 
 _gameOverPanel.SetActive(true);
 
+if (Audio.Instance != null){
+    Audio.Instance.PlayGameOver();
+}
 Time.timeScale = 0.0f;
 }
 
 public void LoadMainMenu()
 {
-Time.timeScale = 1.0f;
-SceneManager.LoadScene("MainMenuScene");
+    if (Audio.Instance != null)
+    {
+        Audio.Instance.PlayButtonClick();
+    }
+    Time.timeScale = 1.0f;
+    SceneManager.LoadScene("MainMenuScene");
 }
 
 public void RestartGame()
 {
-Time.timeScale = 1.0f;
-SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    if(Audio.Instance != null)
+        {
+            Audio.Instance.PlayButtonClick();
+        }
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 }
 }
